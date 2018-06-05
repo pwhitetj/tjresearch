@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project List</title>
+</head>
+<body>
+{% if project_list %}
+    <ul>
+        {%  for project in project_list %}
+            <li> <a href="{% url 'project_detail' project.id %}">{{ project.title }}</a>
+            <a href="{% url 'project_update' project.id %}">Edit</a>
+            <a href="{% url 'project_delete' project.id %}">Delete</a></li>
+        {%  endfor %}
+    </ul>
+{%  else %}
+    <p>No project data available</p>
+{% endif %}
+<p><a href="{% url 'project_add' %}">Add Project</a></p>
+</body>
+</html>

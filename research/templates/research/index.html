@@ -1,0 +1,45 @@
+
+{% extends "research/main_template.html" %}
+
+{% block title %}TJ reSearch{% endblock %}
+
+{% block content %}
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">TJ reSearch</h1>
+          <p>TJ Senior Research projects are collected here. You can browse by lab,
+          search by keyword, lab and topic, and also enter or edit your own 
+          research project information.</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <h2>Browse</h2>
+            <p>Browse through projects by research lab. You can access project summaries, abstracts,
+	      posters, talk slides, full reports and detailed project information.</p>
+            <p><a class="btn btn-secondary" href="{% url 'researchlab' %}" role="button">View details &raquo;</a></p>
+          </div>
+          <div class="col-md-4">
+            <h2>Search</h2>
+            <p>Full-text search of project reports, keywords, abstracts. Or perform an advanced search
+	      by lab, results, equipment, open questions and rating.</p>
+            <p><a class="btn btn-secondary" href="search.html" role="button">View details &raquo;</a></p>
+          </div>
+          <div class="col-md-4">
+            <h2>Edit</h2>
+            <p>Authenticate with ion and edit the information for your research project. Upload your proposal,
+	      abstract, research paper, poster, talk slides. List awards won. Create a list of open questions. Provide
+	      contact info.</p>
+            <p><a class="btn btn-secondary" href="edit.html" role="button">View details &raquo;</a></p>
+          </div>
+        </div>
+
+        <hr>
+
+      </div> <!-- /container -->
+{% endblock %}

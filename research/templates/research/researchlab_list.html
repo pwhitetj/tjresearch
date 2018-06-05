@@ -1,0 +1,43 @@
+{% extends 'research/main_template.html' %}
+{% block title %}Research Labs{% endblock %}
+{% block content %}
+
+    {% if researchlab_list %}
+        <div class="container">
+            <h2>Browse by Research Labs</h2>
+            <!-- Example row of columns -->
+            {% for lab in researchlab_list|dictsort:"lab_name" %}
+                {% if forloop.first %}<div class="row">{% endif %}
+                <div class="col-md-4">
+                    <div class="card border-primary  mb-3" style="max-width: 20rem;">
+                        <div class="card-header">{{ lab.lab_name }}</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ lab.lab_description|truncatechars:250 }}
+                                <!--<a href="{% url 'research_lab_delete' lab.id %}">delete</a>-->
+                            </p>
+                            <br/>Director{{ lab.labdirector_set.all|pluralize }}:
+                            {% for director in lab.labdirector_set.all|dictsort:"last_name" %}
+                                {{ director.last_name }}
+                                {%  ifnotequal forloop.last True %}
+                                    ,
+                                {% endifnotequal %}
+                            {% endfor %}
+                        </div>
+                        </div>
+                    </div>
+                {% if forloop.counter|divisibleby:3 %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+            {% if forloop.last %}
+                </div>
+            {% endif %}
+            {% endfor %}
+
+            <hr>
+        </div> <!-- /container -->
+    {% endif %}
+    <div class="container">
+        <p><a href="{% url 'research_lab_add' %}">Add a Lab</a></p>
+    </div>
+{% endblock %}

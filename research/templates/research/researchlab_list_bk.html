@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+</head>
+<body>
+{% if researchlab_list %}
+    <ul>
+        {%  for lab in researchlab_list %}
+            <li> <a href="{% url 'research_lab_update' lab.id %}">{{ lab.lab_name }}</a>:
+                {{ lab.lab_description }} <a href="{% url 'research_lab_delete' lab.id %}">delete</a></li>
+        {%  endfor %}
+    </ul>
+{%  else %}
+    <p>No lab data available</p>
+{% endif %}
+<p><a href="{% url 'research_lab_add' %}">Add a Lab</a></p>
+</body>
+</html>
