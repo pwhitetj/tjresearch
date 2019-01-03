@@ -22,7 +22,7 @@ class Project(models.Model):
     title = models.CharField(max_length=1024)
     abstract = models.TextField(max_length=32767)
     paper = models.FileField(upload_to=user_directory_path)
-    director = models.ForeignKey('LabDirector')
+    director = models.ForeignKey('LabDirector', on_delete=models.SET_NULL, null=True)
     def __str__(self):
         return self.title
 
@@ -32,7 +32,7 @@ class Student(models.Model):
     email = models.EmailField()
     student_id = models.CharField(max_length=10)
     cookie = models.TextField(max_length=1000)
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s, %s" % (self.last_name, self.first_name)
@@ -40,7 +40,7 @@ class Student(models.Model):
 class ResearchLab(models.Model):
     lab_name = models.CharField(max_length=50)
     lab_description = models.TextField(max_length=1000)
-
+    
     def __str__(self):
         return self.lab_name
 
@@ -48,7 +48,8 @@ class LabDirector(models.Model):
     last_name = models.CharField(max_length=30)
     first_name = models.CharField(max_length=30)
     email = models.EmailField()
-    lab = models.ForeignKey(ResearchLab)
+    lab = models.ForeignKey(ResearchLab, on_delete=models.SET_NULL, null=True)
 
+    
     def __str__(self):
         return "%s, %s" % (self.last_name, self.first_name)
